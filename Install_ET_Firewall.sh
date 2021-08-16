@@ -23,7 +23,6 @@ INFO="Installing firewalld" ; DisplayInfo
 apt update >>$LOG 2>&1
 apt -y install firewalld ipset libnet-ip-perl >>$LOG 2>&1
 
-
 INFO="Make sure ssh (tcp/22) is allowed" ; DisplayInfo
 firewall-cmd --zone=public --add-service=ssh --permanent >>$LOG 2>&1
 firewall-cmd --reload >>$LOG 2>&1
@@ -35,7 +34,6 @@ wget -O /usr/local/bin/country-block.sh https://raw.githubusercontent.com/alexle
 wget -O /usr/local/bin/ipset-backup.sh https://raw.githubusercontent.com/alexlewislnk/ET-Firewalld/main/ipset-backup.sh >>$LOG 2>&1
 wget -O /usr/local/bin/ipset-restore.sh https://raw.githubusercontent.com/alexlewislnk/ET-Firewalld/main/ipset-restore.sh >>$LOG 2>&1
 chmod +rx /usr/local/bin/*.pl /usr/local/bin/*.sh >>$LOG 2>&1
-
 
 INFO="Create ipset lists and add blocklists to firewalld" ; DisplayInfo
 firewall-cmd --permanent --new-ipset=threat-ip --type=hash:ip >>$LOG 2>&1
