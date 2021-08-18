@@ -14,7 +14,7 @@ NORMAL="$(tput sgr0)"
 
 function DisplayInfo { 
 	printf "${CYAN}$INFO${NORMAL}\\n"
-	printf "$INFO\\n" >>$LOG
+	printf "\\n$INFO\\n" >>$LOG
 }
 
 INFO="Firewalld setup started at $(date)" ; DisplayInfo
@@ -51,10 +51,10 @@ INFO="Run initial download of the blocklists" ; DisplayInfo
 /usr/local/bin/ipset-backup.sh >>$LOG 2>&1
 
 INFO="Setup crontab to regularly update and backup the blocklists and restore on reboot" ; DisplayInfo
-(crontab -l 2> $LOG ; echo "@hourly /usr/local/bin/emerging-threats-update.sh" )| crontab - >>$LOG 2>&1
-(crontab -l 2> $LOG ; echo "@daily /usr/local/bin/country-block.sh" )| crontab - >>$LOG 2>&1
-(crontab -l 2> $LOG ; echo "15 * * * * /usr/local/bin/ipset-backup.sh" )| crontab - >>$LOG 2>&1
-(crontab -l 2> $LOG ; echo "@reboot sleep 60 ; /usr/local/bin/ipset-restore.sh" )| crontab - >>$LOG 2>&1
+(crontab -l 2>> $LOG ; echo "@hourly /usr/local/bin/emerging-threats-update.sh" )| crontab - >>$LOG 2>&1
+(crontab -l 2>> $LOG ; echo "@daily /usr/local/bin/country-block.sh" )| crontab - >>$LOG 2>&1
+(crontab -l 2>> $LOG ; echo "15 * * * * /usr/local/bin/ipset-backup.sh" )| crontab - >>$LOG 2>&1
+(crontab -l 2>> $LOG ; echo "@reboot sleep 60 ; /usr/local/bin/ipset-restore.sh" )| crontab - >>$LOG 2>&1
 
 INFO="Firewalld setup completed at $(date)" ; DisplayInfo
 INFO="Check log file $LOG for any errors" ; DisplayInfo
