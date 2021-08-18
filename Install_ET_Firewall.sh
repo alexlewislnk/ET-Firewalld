@@ -20,6 +20,7 @@ function DisplayInfo {
 INFO="Firewalld setup started at $(date)" ; DisplayInfo
 
 INFO="Installing firewalld" ; DisplayInfo
+export DEBIAN_FRONTEND=noninteractive
 apt update >>$LOG 2>&1
 apt -y install firewalld ipset libnet-ip-perl >>$LOG 2>&1
 
@@ -50,10 +51,10 @@ INFO="Run initial download of the blocklists" ; DisplayInfo
 /usr/local/bin/ipset-backup.sh >>$LOG 2>&1
 
 INFO="Setup crontab to regularly update and backup the blocklists and restore on reboot" ; DisplayInfo
-(crontab -l ; echo "@hourly /usr/local/bin/emerging-threats-update.sh" )| crontab - >>$LOG 2>&1
-(crontab -l ; echo "@daily /usr/local/bin/country-block.sh" )| crontab - >>$LOG 2>&1
-(crontab -l ; echo "15 * * * * /usr/local/bin/ipset-backup.sh" )| crontab - >>$LOG 2>&1
-(crontab -l ; echo "@reboot sleep 60 ; /usr/local/bin/ipset-restore.sh" )| crontab - >>$LOG 2>&1
+(crontab -l 2> $LOG ; echo "@hourly /usr/local/bin/emerging-threats-update.sh" )| crontab - >>$LOG 2>&1
+(crontab -l 2> $LOG ; echo "@daily /usr/local/bin/country-block.sh" )| crontab - >>$LOG 2>&1
+(crontab -l 2> $LOG ; echo "15 * * * * /usr/local/bin/ipset-backup.sh" )| crontab - >>$LOG 2>&1
+(crontab -l 2> $LOG ; echo "@reboot sleep 60 ; /usr/local/bin/ipset-restore.sh" )| crontab - >>$LOG 2>&1
 
 INFO="Firewalld setup completed at $(date)" ; DisplayInfo
 INFO="Check log file $LOG for any errors" ; DisplayInfo
