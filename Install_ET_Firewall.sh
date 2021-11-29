@@ -57,6 +57,5 @@ INFO="Setup crontab to regularly update and backup the blocklists and restore on
 (crontab -l 2>> $LOG ; echo "@reboot sleep 60 ; /usr/local/bin/ipset-restore.sh" )| crontab - >>$LOG 2>&1
 
 INFO="Firewalld setup completed at $(date)" ; DisplayInfo
-INFO="Check log file $LOG for any errors" ; DisplayInfo
-
+INFO="${YELLOW}Check log file ${RED}$LOG${YELLOW} for any errors" ; DisplayInfo
 # End
