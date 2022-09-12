@@ -22,6 +22,7 @@ INFO="Firewalld setup started at $(date)" ; DisplayInfo
 INFO="Installing firewalld" ; DisplayInfo
 export DEBIAN_FRONTEND=noninteractive
 apt update >>$LOG 2>&1
+apt -y purge ufw >>$LOG 2>&1
 apt -y install firewalld ipset libnet-ip-perl >>$LOG 2>&1
 
 INFO="Make sure ssh (tcp/22) is allowed" ; DisplayInfo
