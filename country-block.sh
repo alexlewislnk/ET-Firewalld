@@ -5,7 +5,7 @@
 # use lower case letters and separate with a space
 #
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-ISO="al ba bb bi bo bs bw by cd cf cn cu gh hk hr iq ir jm kh kp lb ly me mk ml mm mu ni pa pk rs ru sd so ss sy ua ug ve xk ye zw"
+ISO="af al bb by bo ba bg bf cm cf cn cd hr cu et gi ht hk ir iq jm kp xk lb ly mk ml me mz mm ni ng ph ru sn rs so za ss sd sy tz tr ug ua ae ve vn ye zw"
 
 ZONEROOT="/usr/local/tmp"
 DLROOT="http://www.ipdeny.com/ipblocks/data/aggregated"
